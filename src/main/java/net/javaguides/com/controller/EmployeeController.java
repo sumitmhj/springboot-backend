@@ -25,7 +25,7 @@ public class EmployeeController {
     }
 
     // build create employee REST API
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public Employee createEmployee(@RequestBody Employee employee){
         System.out.println(employee);
         return employeeRepository.save(employee);

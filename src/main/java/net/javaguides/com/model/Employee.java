@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "employees")
+@Table(name = "employee")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employee {
 
@@ -36,32 +36,38 @@ public class Employee {
     @JsonManagedReference
     private Address address;
 
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @JoinColumn(name="depart_id")
+//    @JsonManagedReference
+    private Department department;
+
     public long getId() {
         return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmailId() {
-        return emailId;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmailId() {
+        return emailId;
     }
 
     public void setEmailId(String emailId) {
@@ -74,5 +80,12 @@ public class Employee {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
